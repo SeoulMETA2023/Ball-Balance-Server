@@ -38,7 +38,8 @@ def gs(sid, data):
 
 @sio.on("update_movement")
 def um(sid, data):
-    pass
+    cur.execute("SELECT sid FROM client WHERE type = bot ; ")
+    sio.emit("update_movement", data, to=cur.fetchone())
 
 
 @sio.on("set_profile")
