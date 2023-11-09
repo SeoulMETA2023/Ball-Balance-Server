@@ -36,8 +36,21 @@ def gs(sid, data):
     sio.emit("update_status", cur.fetchmany(), to=sid)
 
 
+@sio.on("update_movement")
+def um(sid, data):
+    pass
+
+
+@sio.on("set_profile")
+def sp(sid, data):
+    cur.execute(
+        "INSERT INTO client VAULES(:sid, :type);", {"sid": sid, "type": data["type"]}
+    )
+
+
 if __name__ == "__main__":
     cur.execute(
         "CREATE TABLE ballstatus (timestamp REAL, ball_pos INTEGER, x_axis INTEGER, y_axis INTEGER);"
     )
+    cur.execute("CREATE TABLE client (sid INTEGER, type TEXT);")
     app.run(host="0.0.0.0")
