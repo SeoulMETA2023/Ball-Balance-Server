@@ -27,14 +27,17 @@ def us(sid, data):
     )
 
 
-# @sio.on("get_status")
-# def gs() :
+@sio.on("get_status")
+def gs(sid, data):
+    cur.execute(
+        "SELECT * FROM ballstatus ORDER BY timestamp DESC LIMIT :stamp ;",
+        {"stamp": data["count"]},
+    )
+    sio.emit("update_status", cur.fetchmany(), to=sid)
 
-
-# sio.emit("update_status", data, to = sid)
 
 if __name__ == "__main__":
     cur.execute(
-        "CREATE TABLE ballstatus (timestamp INTEGER, ball_pos INTEGER, x_axis INTEGER, y_axis INTEGER);"
+        "CREATE TABLE ballstatus (timestamp REAL, ball_pos INTEGER, x_axis INTEGER, y_axis INTEGER);"
     )
     app.run(host="0.0.0.0")
