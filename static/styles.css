@@ -20,20 +20,25 @@ body {
 
 .popup-content {
     position: absolute;
-    z-index: 1;
     width: calc(100% - 20px);
     height: 250px;
     background-color: #D9D9D9;
     border-radius: 15px;
     margin: 45px 10px 0px 10px;
+
+    canvas {
+        width: 100%;
+        height: 100%;
+        border-radius: 15px;
+        margin-right: 20px;
+    }
 }
 
 .button {
     position: absolute;
-    z-index: 1;
     width: calc(100% - 20px);
     height: 40px;
-    background-color: #d9d9d9;
+    background-color: #D9D9D9;
     border-radius: 15px;
     margin: 0px 10px 0px 10px;
 }
@@ -42,4 +47,23 @@ body {
     position: absolute;
     left: calc(50% - 20px);
     top: calc(50% - 20px);
+}
+
+.loading-screen {
+    /*display: none;*/
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-color: #474747;
+}
+
+.logo {
+    position: absolute;
+    left: calc(50% - 50px);
+    top: calc(50% - 50px);
 }
